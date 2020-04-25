@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="http://code.jquery.com/jquery-1.8.3.js"></script>
+</head>
+
+    <!-- Найдите все ссылки, ведущие на страницу чужого сайта, и добавьте им атрибут "target"="_blank". -->
+
+<body>
+    <a href='www.google.com' name='a'>11</a>
+    <a href='yandex.com' name='b'>22</a>
+    <a href='yahoo.com' name='c'>33</a>
+    <a href='index.html' name='d'>44</a>      <!--  ссылка на данный сайт -->
+
+    <script>
+        $(document).ready(function() {
+            $("a[href!='index.html']").attr('target', '_blank'); // выбераем все тэги 'a' в которых атрибут href не равен индексной 
+                                                                 // странце и добавляем каждому из них новый атрибут со значением  _blank.
+        });
+    </script>
+
+</body>
+</html>

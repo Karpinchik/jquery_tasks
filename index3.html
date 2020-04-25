@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="http://code.jquery.com/jquery-1.8.3.js"></script>
+</head>
+<body>
+    <!-- Сделайте два поля ввода, в которые пользователь будет вводить ширину и высоту.
+    Сделайте блок, который будет менять свои размеры на введённые. -->
+
+    <label>Ширина</label>
+    <input type="number" id='width'><br>
+    <label>Высота</label>
+    <input type="number" id='height'><br>
+
+    <div id='block' style=" background-color: black;"></div>    <!-- тестовый блок -->
+    <br>
+
+    <script>
+        $(document).ready(function() {                
+ 
+            $('input').keyup(function() {                                   // условие - при вводе значений в любое поле 'input'
+                var w = document.getElementsByTagName('input')[0];          
+                var data_w = w.value;                                       // получаем введенное значение в поле - ширина
+                $('#block').css('width', data_w+'px');                      // меняем значение стиля ширина у блока
+
+                var h = document.getElementsByTagName('input')[1];  
+                var data_h = h.value;                                       // получаем введенное значение в поле - высота
+                $('#block').css('height', data_h+'px');                     // меняем значение стиля высота у блока
+            })
+        });
+    </script>
+    
+</body>
+</html>

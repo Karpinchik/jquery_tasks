@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="http://code.jquery.com/jquery-1.8.3.js"></script>
+</head>
+<body>
+    <!-- Покрасьте все буквы текста в заданном элементе в разные случайные цвета. 
+    Список цветов должен хранится в массиве. Две соседние буквы не должны иметь одинаковый цвет. -->
+
+    <p id='color_elements'>Lorem onsectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+  
+    <script>
+        $(document).ready(function() {                
+            var arr_colors = ['red', 'green', 'blue', 'black', 'yellow', 'Gray', 'Silver', 'Teal', 'Navy', 'Lime'];    // список цветов
+
+            var item = $('p').text();                // получаем элемент
+            var str = '';                           // новыя пустая строка 
+            var color = [];                         // пустой список
+
+            function fun () {                           // функция генерирует случайное число в диапазоне колличества цветов в списке
+                var random_color = Math.floor(Math.random() * 10);
+                return random_color;
+            }
+            color += fun();                     // добавляем в пустой спискок первое случайное значение 
+
+            for (var i = 1; i<=item.length-1; i++){             // функция генерирует и добавляет в список color случайные числа
+                var ran = fun();                                // с условием "не повторяются соседние"
+                while (ran == color[i-1]){
+                    ran = fun();   
+                } 
+                color += ran;
+            }
+
+            for (var i = 0; i<=item.length-1; i++){             // проходим циклом по каждому элементу из item
+                if(item[i]!=' '){                               // если это не пробел, то 
+                    str += '<span style='+ 'color:'+arr_colors[color[i]]+';' +'>' + item[i] + '</span>';  // оборачивает этот элемент в спам и добавляем в новую строку
+                } else str += ' ';                          // если пробел, тодобавляем в строку пробел
+            }
+            document.getElementsByTagName('p')[0].innerHTML = str;    // меняем содержимое параграфи на полученную строку
+        });
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="http://code.jquery.com/jquery-1.8.3.js"></script>
+</head>
+  <!-- На странице есть чекбоксы, изначально не отмеченные.
+  Сделайте так, чтобы только 3 чекбокса из них могли быть отмеченными.
+  При попытке отметить 4-тый чекбокс ничего не должно происходить. -->
+<body>
+    <div id="allcheckboxes">
+        <label >первый</label>
+        <input type="checkbox" id="one"> </br>
+        <label >второй</label>
+        <input type="checkbox" id="two"> </br>
+        <label >третий</label>
+        <input type="checkbox" id="three"> </br>
+        <label >чет-ый</label>
+        <input type="checkbox" id="four"> </br>
+    </div>
+    <p></p>
+
+<script>
+    $(document).ready(function() {
+
+        $('input').change(function() {  
+            console.log($('input[type=checkbox]:checked').length);            // при изменении состояния любого чекбокса 
+            var res = [];                           // в массив собираем значения состояния чекбоксов
+
+            res[0] = $('#one').prop("checked");
+            res[1] = $('#two').prop("checked");
+            res[2] = $('#three').prop("checked");
+            res[3] = $('#four').prop("checked");
+
+            var counter = res.filter(item => item === false).length;       // узнаем колличество отжатых чекбоксов в данный момент
+            if(counter<1) {                                 // если значение counter меньше 1 значит был нажат последний чекбокс 
+                $(this).attr("checked", false);      // меняем его свойство на false
+            } 
+        });
+
+    });
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="http://code.jquery.com/jquery-1.8.3.js"></script>
+</head>
+<!-- Дан инпут. В него разрешено вводить N символов. При введение текста справа появляется счетчик такого типа - 
+"Осталось ввести 10 символов". После того, как предел достигнут - текст все равно разрешено вводить, 
+только надпись будет типа "Лимит превышен на 10 символов". Вместо 10-ти, конечно же, нужное число. -->
+<body>
+    
+    <label>введите 10 символов</label>
+    <input type="text" id='text'>    
+    <span id='p'></span>          <!-- блок для ввывода счетчика. -->
+
+<script>
+    
+    $('#text').keyup(function() {                                    // обработчик при нажатии клавиш (кроме спец)
+        var counter = $('#text').val();        // получаем данные введенные в инпут
+        var counter_len = counter.length;  
+        console.log(counter_len);                     // получаем колличество символов в введенных данных
+
+        if (counter_len < 10){
+            $('#p').text("Осталось ввести   " + (10-counter_len) + " символов");            // если счетчик меньше 10, то выводим счетчик в 'p'
+        } else if (counter_len >= 10){  
+            $('#p').text("Лимит превышен на " + (counter_len-10) + " символов");            // если счетчик больше 10
+        }
+    })
+
+</script>
+
+</body>
+</html>
